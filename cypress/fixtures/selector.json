@@ -1,0 +1,7 @@
+{
+  "loginPage": {
+    "emailField": "[name='email']",
+    "loginButton": ".gap-4",
+    "loginButton2": ".gap-2"
+  }
+}
