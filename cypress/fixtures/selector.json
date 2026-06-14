@@ -2,6 +2,17 @@
   "loginPage": {
     "emailField": "[name='email']",
     "loginButton": ".gap-4",
-    "loginButton2": ".gap-2"
+    "loginButton2": ".gap-2",
+    "secureCodeField": "[name='verificationCode']"
+  },
+  "dashboardPage": {
+    "dashboardButton": "#radix-_r_7_",
+    "documentsButton": "[href='/dashboard/documents']"
+  },
+  "documentsPage": {
+    "addButton": "div.flex.flex-row.items-center.gap-4 > button:last-child",
+    "uploadButton": "#radix-_r_t_ > .flex.gap-2 > :nth-child(3)",
+    "clickToUpload": ".bg-sidebar > .flex",
+    "dragAndDrop": "input[type='file']"
   }
 }
