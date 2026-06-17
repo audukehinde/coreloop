@@ -17,7 +17,7 @@ Cypress.Commands.add('verifyText', (text) => {
 });
 // -- This command fills the input field --
 Cypress.Commands.add('InputElement', (ele, value) => {
-    cy.get(ele).should('exist').and('be.visible').clear().type(value);
+    cy.get(ele).should('exist').and('be.visible').type(value);
 });
 // -- This command clicks on the element --
 Cypress.Commands.add('clickElement', (ele) => {

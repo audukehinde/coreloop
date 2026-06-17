@@ -13,6 +13,13 @@
     "addButton": "div.flex.flex-row.items-center.gap-4 > button:last-child",
     "uploadButton": "#radix-_r_t_ > .flex.gap-2 > :nth-child(3)",
     "clickToUpload": ".bg-sidebar > .flex",
-    "dragAndDrop": "input[type='file']"
+    "dragAndDrop": "input[type='file']",
+    "addLineItemButton": "[data-cy='document-add-line-item']",
+    "lineItemDescription": "[data-cy='badge-input-title']",
+    "lineItemQuantity": "[data-cy='badge-input-quantity']",
+    "lineItemRate": "[data-cy='badge-input-rate']",
+    "lineItemDiscount": "[data-cy='badge-input-discountPercentage']",
+    "lineItemSubtotal": "[data-cy='badge-input-subtotal']",
+    "lineItemTaxRate": "[data-cy='badge-input-taxRateId']"
   }
 }

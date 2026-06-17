@@ -6,7 +6,6 @@ describe('Documents', () => {
         cy.userLogin('qa@coreloops.ai');
         cy.clickElement(sel.loginPage.loginButton2);
         cy.verifyUrl('/dashboard');
-
     });
 
     it('should upload valid document', () => {
