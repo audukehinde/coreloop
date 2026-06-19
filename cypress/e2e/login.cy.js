@@ -1,11 +1,9 @@
-let sel;
+import sel from '../fixtures/selector';
+
 describe('template spec', () => {
 
   beforeEach(() => {
     cy.visit('/');
-    cy.fixture('selector').then((data) => {
-      sel = data;
-    });
   });
 
   it('Verify login page', () => {
