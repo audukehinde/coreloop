@@ -1,0 +1,74 @@
+name: Cypress Test Automation
+on:
+ push:
+  branches:
+   - main
+   - master
+   - develop
+
+ pull_request:
+  branches:
+  - main
+  - master
+  - develop
+
+jobs:
+ cypress-tests:
+  runs-on: ubuntu-latest
+
+  steps:
+  - name: Checkout Repository
+    uses: actions/checkout@v4
+
+  - name: Setup Node.js
+    uses: actions/setup-node@v4
+    with:
+     node-version: 20
+
+  - name: Install Dependencies
+    run: npm ci
+
+  - name: Verify Cypress Installation
+    run: npx cypress verify
+
+  - name: Run Cypress Tests
+    run: npx cypress run --headless
+
+  - name: Upload Screenshots
+    if: failure()
+    uses: actions/upload-artifact@v4
+    with:
+     name: cypress-screenshots
+     path: cypress/screenshots
+     if-no-files-found: ignore
+
+  - name: Upload Videos
+    if: always()
+    uses: actions/upload-artifact@v4
+    with:
+     name: cypress-videos
+     path: cypress/videos
+     if-no-files-found: ignore
+
+  - name: Upload Mochawesome Report
+    if: always()
+    uses: actions/upload-artifact@v4
+    with:
+     name: mochawesome-report
+     path: cypress/reports
+     if-no-files-found: ignore
+
+  - name: Test Summary
+    if: always()
+    run: |
+     echo "## Cypress Test Execution Summary" >> $GITHUB_STEP_SUMMARY
+     echo "" >> $GITHUB_STEP_SUMMARY
+     echo "- Repository: ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
+     echo "- Branch: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+     echo "- Triggered by: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+     echo "- Workflow Status: Completed" >> $GITHUB_STEP_SUMMARY
+     echo "" >> $GITHUB_STEP_SUMMARY
+     echo "Artifacts generated:" >> $GITHUB_STEP_SUMMARY
+     echo "- Cypress Videos" >> $GITHUB_STEP_SUMMARY
+     echo "- Cypress Screenshots (on failure)" >> $GITHUB_STEP_SUMMARY
+     echo "- Mochawesome Test Report" >> $GITHUB_STEP_SUMMARY
