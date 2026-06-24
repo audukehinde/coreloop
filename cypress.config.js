@@ -1,8 +1,6 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
-  allowCypressEnv: false,
-
   reporter: 'mochawesome',
 
   reporterOptions: {
@@ -12,23 +10,26 @@ module.exports = defineConfig({
     json: true,
   },
 
-  e2e: {
-    // implement node event listeners here
-    specPattern: "cypress/e2e/**/*.cy.{js,jsx,ts,tsx}",
-    baseUrl: "https://coreloops-v2-350156031212.europe-west2.run.app/auth/login"
+  retries: {
+    runMode: 2,
+    openMode: 0,
   },
+
   viewportWidth: 1440,
   viewportHeight: 900,
 
   video: true,
-
   screenshotOnRunFailure: true,
 
-  defaultCommandTimeout: 10000,
+  e2e: {
+    baseUrl:
+      process.env.CYPRESS_BASE_URL ||
+      'https://coreloops-v2-350156031212.europe-west2.run.app/auth/login',
 
-  pageLoadTimeout: 30000,
+    specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
 
-  requestTimeout: 15000,
-
-  responseTimeout: 15000,
+    setupNodeEvents(on, config) {
+      return config;
+    },
+  },
 });
